@@ -7,19 +7,24 @@
 
 import SwiftUI
 
-class EmojiGameViewModel {
+class EmojiGameViewModel: ObservableObject {
     
     static var emojis: Array<String> = ["😄", "😜", "😍", "🥸", "😡", "🤯", "😱", "😰", "😓", "🥵", "🥺", "🤒", "😵‍💫", "🤢", "🤮", "😴", "🥶"]
     
     static func createMemoryGame() -> MemoryGameModel<String> {
-        MemoryGameModel<String>(numberOfPairsOfCards: 4) { pairIndex in emojis[pairIndex] }
-
+        MemoryGameModel<String>(numberOfPairsOfCards: 4) {
+            pairIndex in emojis[pairIndex] }
     }
-    
-    private var model: MemoryGameModel<String> = createMemoryGame()
+        
+    // Use @Published annotaion to inform ui that updates have been made and need to be redrawn.
+    @Published private var model: MemoryGameModel<String> = createMemoryGame()
     
     var cards: Array<MemoryGameModel<String>.Card> {
         return model.cards
     }
-
+    
+    // MARK: - Intent(s)
+    func choose(_ card: MemoryGameModel<String>.Card) {
+        model.choose(card)
+    }
 }
