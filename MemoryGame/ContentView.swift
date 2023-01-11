@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    var emojies: Array<String> = ["😄", "😜", "😍", "🥸", "😡", "🤯", "😱", "😰", "😓", "🥵", "🥺", "🤒", "😵‍💫", "🤢", "🤮", "😴", "🥶"]
     
-    @State var emojiCount: Int = 6
+    let viewModel: EmojiGameViewModel
     
     var body: some View {
-        return VStack {
-            
+        VStack {
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
-                    ForEach(emojies[0..<emojiCount], id: \.self) { emoji in
-                        CardView(content: emoji).aspectRatio(2/3, contentMode: .fit)
+                    ForEach(viewModel.cards) { card in
+                        CardView(card: card)
+                            .aspectRatio(2/3, contentMode: .fit)
                     }
                 }
                 .foregroundColor(.red)
@@ -33,27 +32,25 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let game = EmojiGameViewModel()
+        ContentView(viewModel: game)
     }
 }
 
 struct CardView: View {
-    @State var isFaceUp: Bool = false
-    var content: String
-    
+    let card: MemoryGameModel<String>.Card
+
     var body: some View {
         ZStack {
             let shape = RoundedRectangle(cornerRadius: 20)
-            if isFaceUp {
+            if card.isFaceUp {
                 shape.fill().foregroundColor(Color.white)
                 shape.strokeBorder(lineWidth: 3)
-                Text(content).font(.largeTitle)
+                Text(card.content).font(.largeTitle)
             } else{
                 shape.fill()
             }
         }
-        .onTapGesture {
-            isFaceUp = !isFaceUp
         }
-    }
+    
 }
