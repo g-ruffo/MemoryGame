@@ -9,15 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let viewModel: EmojiGameViewModel
+    // Use @ObservedObject annotaion to notify ui to listen from changes in view model.
+    @ObservedObject var viewModel: EmojiGameViewModel
     
     var body: some View {
-        VStack {
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
                     ForEach(viewModel.cards) { card in
                         CardView(card: card)
                             .aspectRatio(2/3, contentMode: .fit)
+                            .onTapGesture {
+                                viewModel.choose(card)
+                            }
                     }
                 }
                 .foregroundColor(.red)
@@ -25,9 +28,8 @@ struct ContentView: View {
             
             .font(.largeTitle)
             .padding(.horizontal)
-        }
     }
-
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -39,7 +41,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct CardView: View {
     let card: MemoryGameModel<String>.Card
-
+    
     var body: some View {
         ZStack {
             let shape = RoundedRectangle(cornerRadius: 20)
@@ -51,6 +53,6 @@ struct CardView: View {
                 shape.fill()
             }
         }
-        }
+    }
     
 }
