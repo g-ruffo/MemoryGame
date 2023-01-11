@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MemoryGame<CardContent> {
+struct MemoryGameModel<CardContent> {
     var cards: Array<Card>
     
     func choose(_ card: Card) {
