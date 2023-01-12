@@ -7,13 +7,30 @@
 
 import Foundation
 
-struct MemoryGameModel<CardContent> {
+struct MemoryGameModel<CardContent> where CardContent: Equatable {
     // Set private(set) to prevent changes to the variable from outside this scope. Makes it read-only.
     private(set) var cards: Array<Card>
     
+    private var indexOfTheOnlyFaceupCard: Int?
+    
     // Mark function as mutating to allow object variable to be altered.
     mutating func choose(_ card: Card) {
-        if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }) {
+        if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }),
+            !cards[chosenIndex].isFaceUp,
+            !cards[chosenIndex].isMatched {
+            
+            if let potentialMatchIndex = indexOfTheOnlyFaceupCard {
+                if cards[chosenIndex].content == cards[potentialMatchIndex].content {
+                    cards[chosenIndex].isMatched = true
+                    cards[potentialMatchIndex].isMatched = true
+                }
+                indexOfTheOnlyFaceupCard = nil
+            } else {
+                for index in cards.indices {
+                    cards[index].isFaceUp = false
+                }
+                indexOfTheOnlyFaceupCard = chosenIndex
+            }
             cards[chosenIndex].isFaceUp.toggle()
         }
     }
