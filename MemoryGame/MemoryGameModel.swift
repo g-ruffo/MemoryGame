@@ -13,20 +13,9 @@ struct MemoryGameModel<CardContent> {
     
     // Mark function as mutating to allow object variable to be altered.
     mutating func choose(_ card: Card) {
-        let chosenIndex = index(of: card)
-        cards[chosenIndex].isFaceUp.toggle()
-        print("chosen card = \(cards[chosenIndex])")
-        print("\(cards)")
-
-    }
-    
-    func index(of card: Card) -> Int {
-        for index in 0..<cards.count {
-            if cards[index].id == card.id {
-                return index
-            }
+        if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }) {
+            cards[chosenIndex].isFaceUp.toggle()
         }
-        return 0
     }
     
     init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
@@ -37,6 +26,7 @@ struct MemoryGameModel<CardContent> {
             cards.append(Card(content: content, id: pairIndex * 2))
             cards.append(Card(content: content, id: pairIndex * 2 + 1))
         }
+        cards.shuffle()
     }
     
     struct Card: Identifiable {
