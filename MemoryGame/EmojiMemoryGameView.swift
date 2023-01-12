@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct EmojiMemoryGameView: View {
     
     // Use @ObservedObject annotaion to notify ui to listen from changes in view model.
     @ObservedObject var viewModel: EmojiGameViewModel
@@ -55,7 +55,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let game = EmojiGameViewModel()
-        ContentView(viewModel: game)
+        EmojiMemoryGameView(viewModel: game)
     }
 }
 
