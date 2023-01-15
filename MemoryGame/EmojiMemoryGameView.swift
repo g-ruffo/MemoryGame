@@ -13,7 +13,6 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiGameViewModel
     
     var body: some View {
-        
         VStack {
             HStack {
                 Text(viewModel.themeName).font(.largeTitle)
@@ -22,16 +21,19 @@ struct EmojiMemoryGameView: View {
             }
             .padding(.horizontal, 40.0)
             Spacer()
-            AspectVGrid(items: viewModel.cards, aspectRatio: 2/3, content: { card in
-                CardView(card: card)
-                    .padding(4)
-                    .onTapGesture {
-                        viewModel.choose(card)
-                    }
-            })
+            AspectVGrid(items: viewModel.cards, aspectRatio: 2/3) { card in
+                if card.isMatched && !card.isFaceUp {
+                    Rectangle().opacity(0)
+                } else {
+                    CardView(card: card)
+                        .padding(4)
+                        .onTapGesture {
+                            viewModel.choose(card)
+                        }
+                }
+            }
             
             .foregroundColor(viewModel.themeColor)
-            //            }
             .font(.largeTitle)
             .padding(.horizontal)
             

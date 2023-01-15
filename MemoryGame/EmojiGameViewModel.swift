@@ -28,7 +28,7 @@ class EmojiGameViewModel: ObservableObject {
               ),
         Theme(name: "animals",
               emojis: ["🦍", "🦘", "🐘", "🛰️", "🐆", "🐐", "🐈", "🐈‍⬛", "🐊"],
-              numberOfPairsOfCards: 6,
+              numberOfPairsOfCards: 8,
               color: "green"
               )
     ]
