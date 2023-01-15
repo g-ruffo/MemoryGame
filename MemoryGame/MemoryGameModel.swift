@@ -10,30 +10,18 @@ import Foundation
 struct MemoryGameModel<CardContent> where CardContent: Equatable {
     // Set private(set) to prevent changes to the variable from outside this scope. Makes it read-only.
     private(set) var cards: Array<Card>
-    private var indexOfTheOnlyFaceupCard: Int?
-    
-    //    private var indexOfTheOnlyFaceupCard: Int? {
-    //        get { cards.indices.filter { cards[$0].isFaceUp }.oneAndOnly }
-    //        set {
-    //
-    //            cards.indices.forEach {
-    //                cards[$0].hasBeenSeen = cards[$0].isFaceUp && ($0 != newValue)
-    //                cards[$0].isFaceUp = ($0 == newValue)
-    //            }
-    ////            for index in cards.indices {
-    ////                if index != newValue {
-    ////                    if cards[index].isFaceUp {
-    ////                        cards[index].isFaceUp = false
-    ////                        cards[index].hasBeenSeen = true
-    ////                    }
-    ////                } else {
-    ////                    cards[index].isFaceUp = true
-    ////                }
-    ////            }
-    //        }
-    //    }
     
     private(set) var score = 0
+    
+    private var indexOfTheOnlyFaceupCard: Int? {
+        get { cards.indices.filter{ cards[$0].isFaceUp }.oneAndOnly  }
+        set {
+            cards.indices.forEach {
+                if cards[$0].isFaceUp { cards[$0].hasBeenSeen = true }
+                cards[$0].isFaceUp = ($0 == newValue)
+            }
+        }
+    }
     
     // Mark function as mutating to allow object variable to be altered.
     mutating func choose(_ card: Card) {
@@ -51,18 +39,11 @@ struct MemoryGameModel<CardContent> where CardContent: Equatable {
                         score -= 1
                     }
                 }
-                indexOfTheOnlyFaceupCard = nil
-
+                cards[chosenIndex].isFaceUp = true
+                
             } else {
-                for index in cards.indices {
-                    if cards[index].isFaceUp {
-                        cards[index].isFaceUp = false
-                        cards[index].hasBeenSeen = true
-                    }
-                }
                 indexOfTheOnlyFaceupCard = chosenIndex
             }
-            cards[chosenIndex].isFaceUp.toggle()
         }
     }
     
