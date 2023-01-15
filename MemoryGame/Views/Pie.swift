@@ -28,7 +28,7 @@ struct Pie: Shape {
             , radius: radius
             , startAngle: startAngle
             , endAngle: endAngle
-            , clockwise: clockwise
+            , clockwise: !clockwise
         )
         p.addLine(to: center)
 
