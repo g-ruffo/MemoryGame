@@ -18,6 +18,7 @@
 		7993555F2973AAA500B49176 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7993555E2973AAA500B49176 /* Extensions.swift */; };
 		799355612973D94D00B49176 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799355602973D94D00B49176 /* AspectVGrid.swift */; };
 		799355652973E14500B49176 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799355642973E14500B49176 /* CardView.swift */; };
+		799355692973F35600B49176 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799355682973F35600B49176 /* Card.swift */; };
 		79B5CFF2296E7A68002AD4F8 /* MemoryGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5CFF1296E7A68002AD4F8 /* MemoryGameModel.swift */; };
 		79B5CFF4296E7FC8002AD4F8 /* EmojiGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5CFF3296E7FC8002AD4F8 /* EmojiGameViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,7 @@
 		7993555E2973AAA500B49176 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		799355602973D94D00B49176 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		799355642973E14500B49176 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		799355682973F35600B49176 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		79B5CFF1296E7A68002AD4F8 /* MemoryGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameModel.swift; sourceTree = "<group>"; };
 		79B5CFF3296E7FC8002AD4F8 /* EmojiGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				79817A53296FC1540015349A /* Theme.swift */,
+				799355682973F35600B49176 /* Card.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79B5CFF2296E7A68002AD4F8 /* MemoryGameModel.swift in Sources */,
+				799355692973F35600B49176 /* Card.swift in Sources */,
 				7993555F2973AAA500B49176 /* Extensions.swift in Sources */,
 				799355612973D94D00B49176 /* AspectVGrid.swift in Sources */,
 				79455EA1296CF6A400C807B2 /* EmojiMemoryGameView.swift in Sources */,
