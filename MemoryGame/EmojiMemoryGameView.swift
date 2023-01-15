@@ -53,14 +53,7 @@ struct EmojiMemoryGameView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let game = EmojiGameViewModel()
-        EmojiMemoryGameView(viewModel: game)
+        game.choose(game.cards.first!)
+        return EmojiMemoryGameView(viewModel: game)
     }
-}
-
-
-
-struct DrawingConstants {
-    static let cornerRadius: CGFloat = 10
-    static let strokeCardBorder: CGFloat = 3
-    static let fontScale: CGFloat = 0.75
 }
