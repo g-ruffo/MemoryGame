@@ -9,7 +9,7 @@ import Foundation
 
 struct MemoryGameModel<CardContent> where CardContent: Equatable {
     // Set private(set) to prevent changes to the variable from outside this scope. Makes it read-only.
-    private(set) var cards: Array<Card>
+    private(set) var cards: Array<Card<CardContent>>
     
     private(set) var score = 0
     
@@ -24,7 +24,7 @@ struct MemoryGameModel<CardContent> where CardContent: Equatable {
     }
     
     // Mark function as mutating to allow object variable to be altered.
-    mutating func choose(_ card: Card) {
+    mutating func choose(_ card: Card<CardContent>) {
         if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }),
            !cards[chosenIndex].isFaceUp,
            !cards[chosenIndex].isMatched {
@@ -48,7 +48,7 @@ struct MemoryGameModel<CardContent> where CardContent: Equatable {
     }
     
     init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
-        cards = Array<Card>()
+        cards = Array<Card<CardContent>>()
         // Add numberOfPairsOfCards x 2 cards to cards array.
         for pairIndex in 0..<numberOfPairsOfCards {
             let content = createCardContent(pairIndex)
@@ -58,11 +58,11 @@ struct MemoryGameModel<CardContent> where CardContent: Equatable {
         cards.shuffle()
     }
     
-    struct Card: Identifiable {
-        var isFaceUp: Bool = false
-        var isMatched: Bool = false
-        var hasBeenSeen: Bool = false
-        let content: CardContent
-        let id: Int
-    }
+//    struct Card: Identifiable {
+//        var isFaceUp: Bool = false
+//        var isMatched: Bool = false
+//        var hasBeenSeen: Bool = false
+//        let content: CardContent
+//        let id: Int
+//    }
 }

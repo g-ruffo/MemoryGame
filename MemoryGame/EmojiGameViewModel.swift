@@ -60,22 +60,19 @@ class EmojiGameViewModel: ObservableObject {
         return model.score
     }
     
-    var cards: Array<MemoryGameModel<String>.Card> {
+    var cards: Array<Card<String>> {
         return model.cards
     }
     
-    
     // MARK: - Intent(s)
-    func choose(_ card: MemoryGameModel<String>.Card) {
+    func choose(_ card: Card<String>) {
         model.choose(card)
     }
-    
     
     func newGame() {
         theme = EmojiGameViewModel.themes.randomElement()!
         theme.emojis.shuffle()
         model = EmojiGameViewModel.createMemoryGame(theme: theme)
     }
-    
-    
+
 }
