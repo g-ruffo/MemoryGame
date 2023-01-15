@@ -66,9 +66,3 @@ struct MemoryGameModel<CardContent> where CardContent: Equatable {
         let id: Int
     }
 }
-
-extension Array {
-    var oneAndOnly: Element? {
-        self.count == 1 ? self.first : nil
-    }
-}
