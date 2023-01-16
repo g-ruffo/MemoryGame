@@ -45,6 +45,10 @@ struct EmojiMemoryGameView: View {
         return Animation.easeInOut(duration: DrawingConstants.dealDuration).delay(delay)
     }
     
+    private func zIndex(of card: Card<String>) -> Double {
+        return -Double(viewModel.cards.firstIndex(where: { $0.id == card.id }) ?? 0)
+    }
+    
     var header: some View {
         HStack {
             Text(viewModel.themeName).font(.largeTitle)
@@ -63,6 +67,7 @@ struct EmojiMemoryGameView: View {
                     .matchedGeometryEffect(id: card.id, in: dealingNamespace)
                     .padding(4)
                     .transition(AnyTransition.asymmetric(insertion: .identity, removal: .scale))
+                    .zIndex(zIndex(of: card))
                     .onTapGesture {
                         withAnimation(.easeInOut) {
                             viewModel.choose(card)
@@ -85,14 +90,14 @@ struct EmojiMemoryGameView: View {
         .frame(width: DrawingConstants.undealtWidth, height: DrawingConstants.undealHeight)
         .foregroundColor(viewModel.themeColor)
         .onTapGesture {
-                // Deal cards
+            // Deal cards
             for card in viewModel.cards {
-                        withAnimation(dealAnimation(for: card)) {
-                        deal(card)
-                    }
+                withAnimation(dealAnimation(for: card)) {
+                    deal(card)
                 }
             }
         }
+    }
     
     var footer: some View {
         HStack {
