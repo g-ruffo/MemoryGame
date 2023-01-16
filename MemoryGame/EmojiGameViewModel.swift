@@ -18,17 +18,17 @@ class EmojiGameViewModel: ObservableObject {
     static var themes: Array<Theme> = [
         Theme(name: "faces",
               emojis: ["😄", "😜", "😍", "🥸", "😡", "🤯", "😱", "😰", "😓", "🥵", "🥺", "🤒", "😵‍💫", "🤢", "🤮", "😴", "🥶"],
-              numberOfPairsOfCards: 12,
+              numberOfPairsOfCards: DrawingConstants.startSizeDeck,
               color: "red"
               ),
         Theme(name: "vehicles",
               emojis: ["✈️", "🚁", "⛴️", "🛰️", "💺", "🚊", "🚖", "⛵️", "🛶"],
-              numberOfPairsOfCards: 3,
+              numberOfPairsOfCards: DrawingConstants.startSizeDeck,
               color: "blue"
               ),
         Theme(name: "animals",
               emojis: ["🦍", "🦘", "🐘", "🛰️", "🐆", "🐐", "🐈", "🐈‍⬛", "🐊"],
-              numberOfPairsOfCards: 8,
+              numberOfPairsOfCards: DrawingConstants.startSizeDeck,
               color: "green"
               )
     ]

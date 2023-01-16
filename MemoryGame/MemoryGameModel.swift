@@ -61,12 +61,4 @@ struct MemoryGameModel<CardContent> where CardContent: Equatable {
         }
         cards.shuffle()
     }
-    
-//    struct Card: Identifiable {
-//        var isFaceUp: Bool = false
-//        var isMatched: Bool = false
-//        var hasBeenSeen: Bool = false
-//        let content: CardContent
-//        let id: Int
-//    }
 }
