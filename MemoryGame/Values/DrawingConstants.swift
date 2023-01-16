@@ -12,4 +12,5 @@ struct DrawingConstants {
     static let strokeCardBorder: CGFloat = 3
     static let fontScale: CGFloat = 0.6
     static let circleTimerOpacity: CGFloat = 0.5
+    static let fontSize: CGFloat = 32
 }
