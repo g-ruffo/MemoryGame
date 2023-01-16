@@ -14,7 +14,8 @@ struct DrawingConstants {
     static let fontScale: CGFloat = 0.6
     static let circleTimerOpacity: CGFloat = 0.5
     static let fontSize: CGFloat = 32
-    static let startSizeDeck: Int = 12
+    static let startSizeDeck: Int = 2
+    static let bonusTimeLimit: Double = 6
     
     static let aspectRatio: CGFloat = 2/3
     static let dealDuration: Double = 0.5

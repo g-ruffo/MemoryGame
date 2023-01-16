@@ -113,7 +113,7 @@ struct EmojiMemoryGameView: View {
             }
         }
         .font(.title3)
-        .padding(.horizontal)
+        .padding(.all)
     }
 }
 
