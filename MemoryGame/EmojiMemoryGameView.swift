@@ -14,44 +14,62 @@ struct EmojiMemoryGameView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text(viewModel.themeName).font(.largeTitle)
-                Spacer()
-                Text("\(viewModel.score)").font(.largeTitle)
-            }
-            .padding(.horizontal, 40.0)
+            header
             Spacer()
+            gameBody
+            Spacer()
+            footer
+            Spacer()
+        }
+    }
+    
+    var header: some View {
+        HStack {
+            Text(viewModel.themeName).font(.largeTitle)
+            Spacer()
+            Text("\(viewModel.score)").font(.largeTitle)
+        }
+        .padding(.horizontal, 40.0)
+    }
+    var gameBody: some View {
             AspectVGrid(items: viewModel.cards, aspectRatio: 2/3) { card in
                 if card.isMatched && !card.isFaceUp {
-                    Rectangle().opacity(0)
+                    Color.clear
                 } else {
                     CardView(card: card)
                         .padding(4)
                         .onTapGesture {
-                            viewModel.choose(card)
+                            withAnimation(.easeInOut) {
+                                viewModel.choose(card)
+                            }
                         }
                 }
             }
-            
             .foregroundColor(viewModel.themeColor)
             .font(.largeTitle)
             .padding(.horizontal)
-            
-            Spacer()
-            
+    }
+    var footer: some View {
+        HStack {
             Button("New Game") {
                 viewModel.newGame()
             }
-            .font(.largeTitle)
-            
+        
+        Spacer()
+            Button("Shuffle") {
+                withAnimation(.easeInOut) {
+                    viewModel.shuffle()
+                }
+            }
         }
+        .font(.largeTitle)
+        .padding(.horizontal, 40.0)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let game = EmojiGameViewModel()
-        game.choose(game.cards.first!)
         return EmojiMemoryGameView(viewModel: game)
     }
 }
