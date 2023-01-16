@@ -15,14 +15,15 @@ struct EmojiMemoryGameView: View {
     @Namespace private var dealingNamespace
     
     var body: some View {
-        VStack {
-            header
-            Spacer()
-            gameBody
+        ZStack(alignment: .bottom) {
+            VStack {
+                header
+                gameBody
+                footer
+            }
             deckBody
-            footer
-            Spacer()
-        }.padding()
+        }
+        .padding()
     }
     
     @State private var dealt = Set<Int>()
@@ -30,9 +31,7 @@ struct EmojiMemoryGameView: View {
     private func deal(_ card: Card<String>) {
         dealt.insert(card.id)
     }
-    private func clear() {
-        dealt.removeAll()
-    }
+    
     private func isUndealt(_ card: Card<String>) -> Bool {
         !dealt.contains(card.id)
     }
@@ -55,7 +54,6 @@ struct EmojiMemoryGameView: View {
             Spacer()
             Text("\(viewModel.score)").font(.largeTitle)
         }
-        .padding(.horizontal, 20.0)
         .animation(nil)
     }
     var gameBody: some View {
@@ -98,13 +96,12 @@ struct EmojiMemoryGameView: View {
             }
         }
     }
-    
     var footer: some View {
         HStack {
             Button("New Game") {
                 withAnimation {
+                    dealt = []
                     viewModel.newGame()
-                    clear()
                 }
             }
             
@@ -115,8 +112,8 @@ struct EmojiMemoryGameView: View {
                 }
             }
         }
-        .font(.title)
-        .padding(.horizontal, 20.0)
+        .font(.title3)
+        .padding(.horizontal)
     }
 }
 
